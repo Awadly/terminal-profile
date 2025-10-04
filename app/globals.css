@@ -1,0 +1,179 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated to terminal color scheme with bright green and amber */
+  --background: #000000; /* Dark background for terminal */
+  --foreground: #00ff00; /* Bright green text */
+  --card: #1e1e1e; /* Dark grey for cards */
+  --card-foreground: #00ff00; /* Bright green for card text */
+  --popover: #1e1e1e; /* Background for popover modals */
+  --popover-foreground: #00ff00; /* Text for popovers */
+  --primary: #00ff00; /* For command prompt text and main headings */
+  --primary-foreground: #000000; /* Inverse text for primary elements */
+  --secondary: #ffcc00; /* Amber for accents and highlights */
+  --secondary-foreground: #000000; /* Inverse text for secondary elements */
+  --muted: #1e1e1e; /* Muted background for less important sections */
+  --muted-foreground: #00ff00; /* Muted text color */
+  --accent: #ffcc00; /* Amber for interactive elements */
+  --accent-foreground: #000000; /* Inverse text for accent elements */
+  --destructive: #ff0000; /* For error messages */
+  --destructive-foreground: #ffffff; /* Inverse text for errors */
+  --border: #474747; /* Light border for cards */
+  --input: #1e1e1e; /* Input field background */
+  --ring: #00ff00; /* For focus rings */
+  --chart-1: #00ff00; /* Chart color 1 */
+  --chart-2: #ffcc00; /* Chart color 2 */
+  --chart-3: #ff0000; /* Chart color 3 */
+  --chart-4: #ffffff; /* Chart color 4 */
+  --chart-5: #000000; /* Chart color 5 */
+  --radius: 0.5rem; /* Slight rounding for cards */
+  --sidebar: #1e1e1e; /* Sidebar background */
+  --sidebar-foreground: #00ff00; /* Sidebar text color */
+  --sidebar-primary: #00ff00; /* Primary sidebar color */
+  --sidebar-primary-foreground: #000000; /* Inverse sidebar text */
+  --sidebar-accent: #ffcc00; /* Sidebar accent color */
+  --sidebar-accent-foreground: #000000; /* Inverse sidebar accent text */
+  --sidebar-border: #474747; /* Border for sidebar */
+  --sidebar-ring: #00ff00; /* Focus ring for sidebar elements */
+}
+
+.dark {
+  --background: #000000;
+  --foreground: #00ff00;
+  --card: #1e1e1e;
+  --card-foreground: #00ff00;
+  --popover: #1e1e1e;
+  --popover-foreground: #00ff00;
+  --primary: #00ff00;
+  --primary-foreground: #000000;
+  --secondary: #ffcc00;
+  --secondary-foreground: #000000;
+  --muted: #1e1e1e;
+  --muted-foreground: #00ff00;
+  --accent: #ffcc00;
+  --accent-foreground: #000000;
+  --destructive: #ff0000;
+  --destructive-foreground: #ffffff;
+  --border: #474747;
+  --input: #1e1e1e;
+  --ring: #00ff00;
+  --chart-1: #00ff00;
+  --chart-2: #ffcc00;
+  --chart-3: #ff0000;
+  --chart-4: #ffffff;
+  --chart-5: #000000;
+  --sidebar: #1e1e1e;
+  --sidebar-foreground: #00ff00;
+  --sidebar-primary: #00ff00;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #ffcc00;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: #474747;
+  --sidebar-ring: #00ff00;
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-mono;
+  }
+}
+
+/* Added terminal-specific animations and styles */
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typewriter 2s steps(40, end);
+}
+
+.cursor::after {
+  content: "█";
+  animation: blink 1s infinite;
+  color: #00ff00;
+}
+
+.terminal-glow {
+  text-shadow: 0 0 5px currentColor;
+}
+
+.scan-lines {
+  position: relative;
+}
+
+.scan-lines::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(transparent 50%, rgba(0, 255, 0, 0.03) 50%);
+  background-size: 100% 4px;
+  pointer-events: none;
+}
