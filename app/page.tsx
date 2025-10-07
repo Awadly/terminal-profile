@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -110,6 +110,7 @@ export default function TerminalProfile() {
   const [currentCommand, setCurrentCommand] = useState("")
   const [commandHistory, setCommandHistory] = useState<string[]>([])
   const [output, setOutput] = useState<JSX.Element[]>([])
+  const bottomRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     // Initial boot sequence
@@ -310,6 +311,9 @@ export default function TerminalProfile() {
     newOutput.push(<div key={`spacer-${Date.now()}`} className="mb-4"></div>)
     setOutput(newOutput)
     setCurrentCommand("")
+    setTimeout(() => {
+  bottomRef.current?.scrollIntoView({ behavior: "smooth" })
+}, 100)
   }
 
   const getCommandDescription = (command: string) => {
@@ -369,6 +373,7 @@ export default function TerminalProfile() {
 
         {/* Terminal Output */}
         <div className="mb-4 space-y-1">{output}</div>
+        <div ref={bottomRef} />
 
         {/* Command Input */}
         <div className="flex items-center gap-2">
