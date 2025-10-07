@@ -5,7 +5,7 @@
 
 :root {
   /* Updated to terminal color scheme with bright green and amber */
-  --background: #000000; /* Dark background for terminal */
+  --background: #300924 ; /* Ubuntu background for terminal */
   --foreground: #00ff00; /* Bright green text */
   --card: #1e1e1e; /* Dark grey for cards */
   --card-foreground: #00ff00; /* Bright green for card text */

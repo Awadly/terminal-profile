@@ -110,14 +110,6 @@ export default function TerminalProfile() {
   const [currentCommand, setCurrentCommand] = useState("")
   const [commandHistory, setCommandHistory] = useState<string[]>([])
   const [output, setOutput] = useState<JSX.Element[]>([])
-  const [showCursor, setShowCursor] = useState(true)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setShowCursor((prev) => !prev)
-    }, 500)
-    return () => clearInterval(interval)
-  }, [])
 
   useEffect(() => {
     // Initial boot sequence
@@ -390,7 +382,6 @@ export default function TerminalProfile() {
             placeholder="Type a command..."
             autoFocus
           />
-          <span className={`text-primary ${showCursor ? "opacity-100" : "opacity-0"}`}>█</span>
         </div>
 
         {/* Footer */}
