@@ -24,4 +24,5 @@ jobs:
           ssh azureuser@${{ secrets.AZURE_VM_PUBLIC_IP }} << 'EOF'
             cd ~/terminal-profile
             git pull origin main
+            docker compose up -d --build
           EOF
